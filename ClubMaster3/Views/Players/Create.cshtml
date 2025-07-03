@@ -1,0 +1,43 @@
+﻿@model ClubMaster3.Models.Player
+
+<h2 class="mb-4">Add New Player</h2>
+
+<form asp-action="Create" enctype="multipart/form-data">
+    <div class="form-group mb-3">
+        <label asp-for="Name" class="form-label">Name</label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-3">
+        <label asp-for="Position" class="form-label">Position</label>
+        <input asp-for="Position" class="form-control" />
+        <span asp-validation-for="Position" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-3">
+        <label asp-for="ShirtNum" class="form-label">Shirt Number</label>
+        <input asp-for="ShirtNum" class="form-control" />
+        <span asp-validation-for="ShirtNum" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-3">
+        <label asp-for="Age" class="form-label">Age</label>
+        <input asp-for="Age" class="form-control" />
+        <span asp-validation-for="Age" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-3">
+        <label asp-for="TeamId" class="form-label">Team ID</label>
+        <input asp-for="TeamId" class="form-control" />
+        <span asp-validation-for="TeamId" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-4">
+        <label for="ImageFile" class="form-label">Upload Image</label>
+        <input type="file" class="form-control" name="ImageFile" id="ImageFile" />
+    </div>
+
+    <button type="submit" class="btn btn-success">Create</button>
+    <a asp-action="Index" class="btn btn-secondary ms-2">Cancel</a>
+</form>

@@ -1,0 +1,31 @@
+﻿@model ClubMaster3.Models.Coach
+
+<h2 class="mb-4">Add New Coach</h2>
+
+<form asp-action="Create" enctype="multipart/form-data">
+    <div class="form-group mb-3">
+        <label asp-for="Name" class="form-label">Name</label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-3">
+        <label asp-for="Salary" class="form-label">Salary</label>
+        <input asp-for="Salary" class="form-control" />
+        <span asp-validation-for="Salary" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-3">
+        <label asp-for="Phone" class="form-label">Phone</label>
+        <input asp-for="Phone" class="form-control" />
+        <span asp-validation-for="Phone" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-3">
+        <label for="ImageFile" class="form-label">Upload Image</label>
+        <input type="file" class="form-control" name="ImageFile" />
+    </div>
+
+    <button type="submit" class="btn btn-success">Create</button>
+    <a asp-action="Index" class="btn btn-secondary ms-2">Cancel</a>
+</form>

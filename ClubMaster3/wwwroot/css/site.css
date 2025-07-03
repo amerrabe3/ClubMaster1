@@ -1,0 +1,85 @@
+﻿/* ✅ GENERAL PAGE RESET */
+body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    font-family: 'Segoe UI', sans-serif;
+    color: #222;
+}
+
+/* ✅ BACKGROUND LAYER */
+.background {
+    background-image: url('/images/camp-now.jpg'); /* 🔁 غيّرها حسب الصورة */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    opacity: 0.2;
+    z-index: -1;
+}
+
+/* ✅ WRAPPER FOR MAIN PAGE CONTENT */
+.main-content {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    padding: 40px 20px;
+}
+
+/* ✅ OPTIONAL FLEXBOX CENTERING (if needed) */
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ✅ NAVBAR STYLING ABOVE BACKGROUND */
+.navbar {
+    position: relative;
+    z-index: 10;
+    background-color: #007bff;
+    color: white;
+    padding: 12px 24px;
+}
+
+/* ✅ PAGE SECTIONS (tables, forms...) */
+.section {
+    background-color: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(4px);
+    border-radius: 16px;
+    padding: 30px;
+    margin-top: 30px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+
+/* ✅ TABLE MODERN LOOK */
+.table {
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+    .table th,
+    .table td {
+        text-align: center;
+        vertical-align: middle;
+    }
+
+/* ✅ BUTTONS */
+.btn-primary {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 6px 16px;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+}
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }

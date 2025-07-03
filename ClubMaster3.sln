@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36212.18 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClubMaster3", "ClubMaster3\ClubMaster3.csproj", "{75D4E8AC-E9DD-498A-B18C-1F0D70C3DF14}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{75D4E8AC-E9DD-498A-B18C-1F0D70C3DF14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75D4E8AC-E9DD-498A-B18C-1F0D70C3DF14}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75D4E8AC-E9DD-498A-B18C-1F0D70C3DF14}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75D4E8AC-E9DD-498A-B18C-1F0D70C3DF14}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CE25BAA6-11CC-49F9-AD06-4CA85C30ABFC}
+	EndGlobalSection
+EndGlobal
