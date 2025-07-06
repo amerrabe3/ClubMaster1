@@ -13,10 +13,27 @@ namespace ClubMaster3.Data
             : base(options)
         {
         }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Match>()
+                .HasOne(m => m.TeamA)
+                .WithMany()
+                .HasForeignKey(m => m.TeamAId)
+                .OnDelete(DeleteBehavior.Restrict); // منع الحذف التلقائي
+
+            modelBuilder.Entity<Match>()
+                .HasOne(m => m.TeamB)
+                .WithMany()
+                .HasForeignKey(m => m.TeamBId)
+                .OnDelete(DeleteBehavior.Restrict); // نفس الشي
+        }
+
 
         public DbSet<ClubMaster3.Models.Coach> Coach { get; set; } = default!;
         public DbSet<ClubMaster3.Models.Player> Player { get; set; } = default!;
         public DbSet<ClubMaster3.Models.Team> Team { get; set; } = default!;
-     
+        public DbSet<ClubMaster3.Models.Match> Matches { get; set; }
     }
 }

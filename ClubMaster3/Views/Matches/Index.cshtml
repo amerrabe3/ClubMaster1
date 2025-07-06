@@ -1,0 +1,52 @@
+﻿@model IEnumerable<ClubMaster3.Models.Match>
+@{
+    ViewData["Title"] = "Matches";
+}
+
+<div class="container py-4">
+    <h2 class="text-center mb-4">Matches</h2>
+
+    <div class="text-end mb-4">
+        <a asp-action="Create" class="btn btn-primary">+ Create New Match</a>
+    </div>
+
+    <div class="row">
+        @foreach (var match in Model)
+        {
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body text-center">
+                        <h5 class="card-title mb-3 text-muted">
+                            @match.MatchDateTime.ToString("dd MMM yyyy - hh:mm tt")
+                        </h5>
+
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <div class="team-name fw-bold">@match.TeamA?.Name</div>
+                            <div class="score-box">
+                                @if (match.ScoreA.HasValue && match.ScoreB.HasValue)
+                                {
+                                    <span class="fs-4 fw-bold">@match.ScoreA</span>
+                                    <span class="mx-1">:</span>
+                                    <span class="fs-4 fw-bold">@match.ScoreB</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-warning text-dark">Upcoming Match</span>
+                                }
+                            </div>
+                            <div class="team-name fw-bold">@match.TeamB?.Name</div>
+                        </div>
+
+                        <p class="text-muted mb-2">📍 @match.Location</p>
+
+                        <div class="d-flex justify-content-center gap-2">
+                            <a asp-action="Details" asp-route-id="@match.Id" class="btn btn-sm btn-info text-white">View</a>
+                            <a asp-action="Edit" asp-route-id="@match.Id" class="btn btn-sm btn-warning">Edit</a>
+                            <a asp-action="Delete" asp-route-id="@match.Id" class="btn btn-sm btn-danger">Delete</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
