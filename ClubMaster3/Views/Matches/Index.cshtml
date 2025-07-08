@@ -4,49 +4,61 @@
 }
 
 <div class="container py-4">
-    <h2 class="text-center mb-4">Matches</h2>
-
-    <div class="text-end mb-4">
-        <a asp-action="Create" class="btn btn-primary">+ Create New Match</a>
-    </div>
+    <h2 class="text-center mb-4 fw-bold">Matches</h2>
 
     <div class="row">
         @foreach (var match in Model)
         {
             <div class="col-md-6 col-lg-4 mb-4">
-                <div class="card shadow-sm border-0">
+                <div class="card shadow-lg border-0 h-100 match-card" style="transition: transform 0.2s;">
                     <div class="card-body text-center">
-                        <h5 class="card-title mb-3 text-muted">
-                            @match.MatchDateTime.ToString("dd MMM yyyy - hh:mm tt")
+                        <h5 class="card-title mb-3 text-primary fw-bold">
+                            <i class="bi bi-calendar-event me-2"></i>@match.MatchDateTime.ToString("dd MMM yyyy - hh:mm tt")
                         </h5>
-
                         <div class="d-flex justify-content-between align-items-center mb-2">
-                            <div class="team-name fw-bold">@match.TeamA?.Name</div>
-                            <div class="score-box">
+                            <div class="text-center">
+                                <img src="@match.TeamA?.ImagePath" alt="Team A Logo" class="img-thumbnail bg-white" style="width: 54px; height: 54px; object-fit: cover; border-radius: 50%; border: 2px solid #e3e3e3;" />
+                                <div class="fw-bold mt-1">@match.TeamA?.Name</div>
+                            </div>
+                            <div class="score-box mx-2">
                                 @if (match.ScoreA.HasValue && match.ScoreB.HasValue)
                                 {
-                                    <span class="fs-4 fw-bold">@match.ScoreA</span>
-                                    <span class="mx-1">:</span>
-                                    <span class="fs-4 fw-bold">@match.ScoreB</span>
+                                    <span class="fs-4 fw-bold text-success">@match.ScoreA</span>
+                                    <span class="mx-1 text-dark">:</span>
+                                    <span class="fs-4 fw-bold text-danger">@match.ScoreB</span>
                                 }
                                 else
                                 {
                                     <span class="badge bg-warning text-dark">Upcoming Match</span>
                                 }
                             </div>
-                            <div class="team-name fw-bold">@match.TeamB?.Name</div>
+                            <div class="text-center">
+                                <img src="@match.TeamB?.ImagePath" alt="Team B Logo" class="img-thumbnail bg-white" style="width: 54px; height: 54px; object-fit: cover; border-radius: 50%; border: 2px solid #e3e3e3;" />
+                                <div class="fw-bold mt-1">@match.TeamB?.Name</div>
+                            </div>
                         </div>
-
-                        <p class="text-muted mb-2">📍 @match.Location</p>
-
-                        <div class="d-flex justify-content-center gap-2">
-                            <a asp-action="Details" asp-route-id="@match.Id" class="btn btn-sm btn-info text-white">View</a>
-                            <a asp-action="Edit" asp-route-id="@match.Id" class="btn btn-sm btn-warning">Edit</a>
-                            <a asp-action="Delete" asp-route-id="@match.Id" class="btn btn-sm btn-danger">Delete</a>
+                        <p class="text-muted mb-2"><i class="bi bi-geo-alt me-1"></i>@match.Location</p>
+                        <div class="d-flex justify-content-center gap-2 mt-3">
+                            <a asp-action="Details" asp-route-id="@match.Id" class="btn btn-sm btn-info text-white fw-bold shadow-sm">View</a>
+                            <a asp-action="Edit" asp-route-id="@match.Id" class="btn btn-sm btn-warning fw-bold shadow-sm">Edit</a>
+                            <a asp-action="Delete" asp-route-id="@match.Id" class="btn btn-sm btn-danger fw-bold shadow-sm">Delete</a>
                         </div>
                     </div>
                 </div>
             </div>
         }
     </div>
+    <div class="text-end mt-4">
+        <a asp-action="Create" class="btn btn-primary fw-bold shadow-sm">+ Create New Match</a>
+    </div>
 </div>
+
+@section Scripts {
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
+    <style>
+        .match-card:hover {
+            transform: translateY(-6px) scale(1.02);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.12) !important;
+        }
+    </style>
+}

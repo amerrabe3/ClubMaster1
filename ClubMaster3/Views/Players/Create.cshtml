@@ -1,43 +1,42 @@
 ﻿@model ClubMaster3.Models.Player
 
-<h2 class="mb-4">Add New Player</h2>
-
-<form asp-action="Create" enctype="multipart/form-data">
-    <div class="form-group mb-3">
-        <label asp-for="Name" class="form-label">Name</label>
-        <input asp-for="Name" class="form-control" />
-        <span asp-validation-for="Name" class="text-danger"></span>
+<div class="container d-flex align-items-center justify-content-center min-vh-100">
+    <div class="card shadow-lg p-4 rounded-4" style="max-width: 500px; width: 100%; background: rgba(255,255,255,0.97);">
+        <h2 class="text-center mb-4 fw-bold">Add New Player</h2>
+        <form asp-action="Create" enctype="multipart/form-data">
+            <div class="form-group mb-3">
+                <label asp-for="Name" class="form-label fw-semibold">Name</label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="Position" class="form-label fw-semibold">Position</label>
+                <input asp-for="Position" class="form-control" />
+                <span asp-validation-for="Position" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="ShirtNum" class="form-label fw-semibold">Shirt Number</label>
+                <input asp-for="ShirtNum" class="form-control" />
+                <span asp-validation-for="ShirtNum" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="Age" class="form-label fw-semibold">Age</label>
+                <input asp-for="Age" class="form-control" />
+                <span asp-validation-for="Age" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="TeamId" class="form-label fw-semibold">Team ID</label>
+                <input asp-for="TeamId" class="form-control" />
+                <span asp-validation-for="TeamId" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-4">
+                <label for="ImageFile" class="form-label fw-semibold">Upload Image</label>
+                <input type="file" class="form-control" name="ImageFile" id="ImageFile" />
+            </div>
+            <div class="d-flex align-items-center">
+                <button type="submit" class="btn btn-primary w-50 fw-bold me-2">Create</button>
+                <a asp-action="Index" class="btn btn-outline-secondary w-50 fw-bold">Cancel</a>
+            </div>
+        </form>
     </div>
-
-    <div class="form-group mb-3">
-        <label asp-for="Position" class="form-label">Position</label>
-        <input asp-for="Position" class="form-control" />
-        <span asp-validation-for="Position" class="text-danger"></span>
-    </div>
-
-    <div class="form-group mb-3">
-        <label asp-for="ShirtNum" class="form-label">Shirt Number</label>
-        <input asp-for="ShirtNum" class="form-control" />
-        <span asp-validation-for="ShirtNum" class="text-danger"></span>
-    </div>
-
-    <div class="form-group mb-3">
-        <label asp-for="Age" class="form-label">Age</label>
-        <input asp-for="Age" class="form-control" />
-        <span asp-validation-for="Age" class="text-danger"></span>
-    </div>
-
-    <div class="form-group mb-3">
-        <label asp-for="TeamId" class="form-label">Team ID</label>
-        <input asp-for="TeamId" class="form-control" />
-        <span asp-validation-for="TeamId" class="text-danger"></span>
-    </div>
-
-    <div class="form-group mb-4">
-        <label for="ImageFile" class="form-label">Upload Image</label>
-        <input type="file" class="form-control" name="ImageFile" id="ImageFile" />
-    </div>
-
-    <button type="submit" class="btn btn-success">Create</button>
-    <a asp-action="Index" class="btn btn-secondary ms-2">Cancel</a>
-</form>
+</div>

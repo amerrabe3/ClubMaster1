@@ -1,12 +1,16 @@
-﻿<!DOCTYPE html>
+﻿@{
+    var isLoginPage = Context.Request.Path.Value.ToLower().Contains("/auth/login") || Context.Request.Path.Value.ToLower().Contains("/auth/register");
+    var username = Context.Session.GetString("Username");
+}
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - ClubMaster3</title>
+
     <!-- AOS CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet" />
-
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/ClubMaster3.styles.css" asp-append-version="true" />
@@ -29,51 +33,80 @@
                     border-radius: 5px;
                     text-decoration: underline;
                 }
+
+        .main-content {
+            padding-top: 80px; /* So it doesn't hide behind fixed navbar */
+        }
     </style>
 </head>
 <body>
-    <!-- ✅ صورة الخلفية -->
+    <!-- ✅ Background image -->
     <div class="background"></div>
 
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-club shadow-sm fixed-top">
-            <div class="container">
-                <a class="navbar-brand fw-bold" asp-controller="Home" asp-action="Index">ClubMaster3</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+    @if (!isLoginPage)
+    {
+        <header>
+            <nav class="navbar navbar-expand-lg navbar-club shadow-sm fixed-top">
+                <div class="container-fluid">
+                    <!-- ✅ Left Logo -->
+                    <a class="navbar-brand fw-bold ms-3" asp-controller="Home" asp-action="Index">ClubMaster3</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
 
-                <div class="collapse navbar-collapse justify-content-end" id="navbarContent">
-                    <ul class="navbar-nav d-flex align-items-center">
-                        <li class="nav-item">
-                            <a class="nav-link" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-controller="Players" asp-action="Index">Players</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-controller="Coaches" asp-action="Index">Coaches</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-controller="Teams" asp-action="Index">Teams</a>
-                        </li>
-                      
-                        <li class="nav-item">
-                            <a class="nav-link" asp-controller="Matches" asp-action="Index">Matches</a>
-                        </li>
-                    </ul>
+                    <div class="collapse navbar-collapse" id="navbarContent">
+                        <div class="d-flex w-100 justify-content-between align-items-center">
+
+                            <!-- ✅ Centered Navigation Links -->
+                            <ul class="navbar-nav mx-auto">
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-controller="Home" asp-action="Index">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-controller="Players" asp-action="Index">Players</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-controller="Coaches" asp-action="Index">Coaches</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-controller="Teams" asp-action="Index">Teams</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-controller="Matches" asp-action="Index">Matches</a>
+                                </li>
+                            </ul>
+
+                            <!-- ✅ Right Side: Username + Logout -->
+                            <div class="d-flex align-items-center me-3">
+                                @if (!string.IsNullOrEmpty(username))
+                                {
+                                    <span style="background:rgba(255,255,255,0.25); color:#222; border-radius:20px; padding:6px 18px; margin-right:8px; font-weight:bold; border:1px solid #fff; box-shadow:0 1px 4px rgba(0,0,0,0.07);">
+                                        @username
+                                    </span>
+                                    <form asp-controller="Auth" asp-action="Logout" method="post" style="display:inline;">
+                                        <button type="submit" class="btn btn-danger btn-sm" style="border-radius:16px; font-weight:bold;">Logout</button>
+                                    </form>
+                                }
+                                else
+                                {
+                                    <a class="nav-link text-white" asp-controller="Auth" asp-action="Login">Login</a>
+                                }
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </nav>
-    </header>
+            </nav>
+        </header>
+    }
 
-    <!-- ✅ المحتوى الرئيسي -->
+    <!-- ✅ Main Content -->
     <div class="main-content container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
+    <!-- ✅ Scripts -->
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
@@ -83,10 +116,31 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script>
         AOS.init({
-          duration: 1000, // مدة الحركة بالميلي ثانية
-          once: true // الحركة فقط أول مرة
+            duration: 1000,
+            once: true
+        });
+
+        // Fade in on page load
+        document.addEventListener("DOMContentLoaded", function () {
+            const main = document.querySelector('.main-content');
+            if (main) {
+                main.classList.add('page-fade');
+                setTimeout(() => main.classList.add('page-fade-in'), 10);
+            }
+        });
+
+        // Fade out on link click (for internal links)
+        document.addEventListener("click", function (e) {
+            const main = document.querySelector('.main-content');
+            const link = e.target.closest("a");
+            if (main && link && link.hostname === location.hostname && !link.hasAttribute('target') && !link.href.includes('#')) {
+                e.preventDefault();
+                main.classList.remove('page-fade-in');
+                setTimeout(() => {
+                    window.location = link.href;
+                }, 300); // match transition duration
+            }
         });
     </script>
-
 </body>
 </html>

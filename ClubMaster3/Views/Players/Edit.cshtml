@@ -4,56 +4,47 @@
     ViewData["Title"] = "Edit Player";
 }
 
-<div class="container mt-5">
-    <h2 class="mb-4 text-center fw-bold text-primary">Edit Player Details</h2>
-
-    <form asp-action="Edit">
-        <input type="hidden" asp-for="Id" />
-
-        <div class="mb-3">
-            <label asp-for="Name" class="form-label fw-semibold"></label>
-            <input asp-for="Name" class="form-control" />
-            <span asp-validation-for="Name" class="text-danger"></span>
-        </div>
-
-        <div class="mb-3">
-            <label asp-for="Position" class="form-label fw-semibold"></label>
-            <input asp-for="Position" class="form-control" />
-            <span asp-validation-for="Position" class="text-danger"></span>
-        </div>
-
-        <div class="mb-3">
-            <label asp-for="ShirtNum" class="form-label fw-semibold"></label>
-            <input asp-for="ShirtNum" class="form-control" />
-            <span asp-validation-for="ShirtNum" class="text-danger"></span>
-        </div>
-
-        <div class="mb-3">
-            <label asp-for="Age" class="form-label fw-semibold"></label>
-            <input asp-for="Age" class="form-control" />
-            <span asp-validation-for="Age" class="text-danger"></span>
-        </div>
-
-        <div class="mb-3">
-            <label asp-for="TeamId" class="form-label fw-semibold"></label>
-            <input asp-for="TeamId" class="form-control" />
-            <span asp-validation-for="TeamId" class="text-danger"></span>
-        </div>
-
-        <div class="d-flex justify-content-between">
-            <button type="submit" class="btn btn-success px-4">Save</button>
-            <a asp-action="Index" class="btn btn-secondary px-4">Cancel</a>
-        </div>
-        <div class="form-group">
-            <label for="ImageFile">Upload Image</label>
-            <input type="file" class="form-control" name="ImageFile" />
-        </div>
-    
-    </form>
+<div class="container d-flex align-items-center justify-content-center min-vh-100">
+    <div class="card shadow-lg p-4 rounded-4" style="max-width: 500px; width: 100%; background: rgba(255,255,255,0.97);">
+        <h2 class="text-center mb-4 fw-bold">Edit Player</h2>
+        <form asp-action="Edit" enctype="multipart/form-data">
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group mb-3">
+                <label asp-for="Name" class="form-label fw-semibold"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="Position" class="form-label fw-semibold"></label>
+                <input asp-for="Position" class="form-control" />
+                <span asp-validation-for="Position" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="ShirtNum" class="form-label fw-semibold"></label>
+                <input asp-for="ShirtNum" class="form-control" />
+                <span asp-validation-for="ShirtNum" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="Age" class="form-label fw-semibold"></label>
+                <input asp-for="Age" class="form-control" />
+                <span asp-validation-for="Age" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="TeamId" class="form-label fw-semibold"></label>
+                <input asp-for="TeamId" class="form-control" />
+                <span asp-validation-for="TeamId" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-4">
+                <label for="ImageFile" class="form-label fw-semibold">Upload Image</label>
+                <input type="file" class="form-control" name="ImageFile" />
+            </div>
+            <div class="d-flex align-items-center">
+                <button type="submit" class="btn btn-primary w-50 fw-bold me-2">Save</button>
+                <a asp-action="Index" class="btn btn-outline-secondary w-50 fw-bold">Cancel</a>
+            </div>
+        </form>
+    </div>
 </div>
-
 @section Scripts {
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

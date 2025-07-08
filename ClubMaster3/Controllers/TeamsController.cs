@@ -124,6 +124,11 @@ namespace ClubMaster3.Controllers
             return View(team);
         }
 
+        private bool TeamExists(int id)
+        {
+            return _context.Team.Any(e => e.Id == id);
+        }
+
         // GET: Teams/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
@@ -147,19 +152,23 @@ namespace ClubMaster3.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+            // تحقق إذا الفريق مرتبط بأي مباراة
+            var hasMatches = _context.Matches.Any(m => m.TeamAId == id || m.TeamBId == id);
+
+            if (hasMatches)
+            {
+                ModelState.AddModelError(string.Empty, "Cannot delete team. It is linked to existing matches.");
+                return View(); // أو RedirectToAction("Index") إذا ما بدك تظهر صفحة الحذف مرة ثانية
+            }
+
             var team = await _context.Team.FindAsync(id);
             if (team != null)
             {
                 _context.Team.Remove(team);
+                await _context.SaveChangesAsync();
             }
-
-            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool TeamExists(int id)
-        {
-            return _context.Team.Any(e => e.Id == id);
-        }
     }
 }

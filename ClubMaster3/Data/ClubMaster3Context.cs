@@ -35,5 +35,6 @@ namespace ClubMaster3.Data
         public DbSet<ClubMaster3.Models.Player> Player { get; set; } = default!;
         public DbSet<ClubMaster3.Models.Team> Team { get; set; } = default!;
         public DbSet<ClubMaster3.Models.Match> Matches { get; set; }
+        public DbSet<ClubMaster3.Models.User> Users { get; set; }
     }
 }
