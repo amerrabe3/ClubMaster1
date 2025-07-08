@@ -1,0 +1,40 @@
+﻿@model IEnumerable<ClubMaster3.Models.Team>
+@{
+    ViewData["Title"] = "Teams List";
+}
+
+<div class="main-content">
+    <div class="section">
+        <h2 class="text-center mb-4">Teams List</h2>
+
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover text-center align-middle">
+                <thead class="table-primary">
+                    <tr>
+                        <th>Name</th>
+                        <th>City</th>
+                        <th>Founded Year</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var team in Model)
+                    {
+                        <tr>
+                            <td>@team.Name</td>
+                            <td>@team.City</td>
+                            <td>@team.FoundedYear</td>
+                            <td>
+                                <a asp-action="Details" asp-route-id="@team.Id" class="btn btn-sm btn-outline-info">View</a>
+                                <a asp-action="Edit" asp-route-id="@team.Id" class="btn btn-sm btn-outline-warning">Edit</a>
+                                <a asp-action="Delete" asp-route-id="@team.Id" class="btn btn-sm btn-outline-danger">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <a asp-action="Create" class="btn btn-primary mt-3">Create New Team</a>
+    </div>
+</div>

@@ -1,0 +1,35 @@
+﻿@model ClubMaster3.Models.Match
+
+@{
+    ViewData["Title"] = "Delete Match";
+}
+
+<div class="container d-flex align-items-center justify-content-center min-vh-100">
+    <div class="card shadow-lg p-4 rounded-4" style="max-width: 600px; width: 100%; background: rgba(255,255,255,0.97);">
+        <h2 class="text-center mb-4 text-danger fw-bold">Delete Match</h2>
+        <div class="alert alert-warning text-center mb-4">
+            Are you sure you want to delete this match?
+        </div>
+        <dl class="row mb-4">
+            <dt class="col-sm-4">@Html.DisplayNameFor(model => model.MatchDateTime)</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.MatchDateTime)</dd>
+            <dt class="col-sm-4">@Html.DisplayNameFor(model => model.Location)</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.Location)</dd>
+            <dt class="col-sm-4">@Html.DisplayNameFor(model => model.ScoreA)</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.ScoreA)</dd>
+            <dt class="col-sm-4">@Html.DisplayNameFor(model => model.ScoreB)</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.ScoreB)</dd>
+            <dt class="col-sm-4">@Html.DisplayNameFor(model => model.TeamA)</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.TeamA.Id)</dd>
+            <dt class="col-sm-4">@Html.DisplayNameFor(model => model.TeamB)</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.TeamB.Id)</dd>
+        </dl>
+        <form asp-action="Delete">
+            <input type="hidden" asp-for="Id" />
+            <div class="d-flex align-items-center">
+                <button type="submit" class="btn btn-danger w-50 fw-bold me-2">Delete</button>
+                <a asp-action="Index" class="btn btn-outline-secondary w-50 fw-bold">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,27 @@
+﻿@model ClubMaster3.Models.Match
+
+@{
+    ViewData["Title"] = "Match Details";
+}
+
+<div class="container mt-4 p-4 bg-light rounded shadow">
+    <h2 class="mb-4 text-center">🏟️ Match Details</h2>
+
+    <div class="mb-3">
+        <strong>Team A:</strong> @Model.TeamA
+    </div>
+    <div class="mb-3">
+        <strong>Team B:</strong> @Model.TeamB
+    </div>
+    <div class="mb-3">
+        <strong>Match Date & Time:</strong> @Model.MatchDateTime.ToString("dd/MM/yyyy HH:mm")
+    </div>
+    <div class="mb-3">
+        <strong>Location:</strong> @Model.Location
+    </div>
+    <div class="mb-3">
+        <strong>Score:</strong> @Model.ScoreA - @Model.ScoreB
+    </div>
+
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>

@@ -1,0 +1,151 @@
+﻿@model ClubMaster3.Models.HomeStatsViewModel
+@{
+    ViewData["Title"] = "Home";
+}
+
+<!-- ✅ AOS CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet" />
+
+<style>
+    body {
+        font-family: 'Segoe UI', sans-serif;
+        background-color: #f4f6f8;
+    }
+
+    .carousel-item img {
+        max-height: 400px;
+        object-fit: cover;
+    }
+
+    .carousel-caption h5,
+    .carousel-caption p {
+        color: white;
+        text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+    }
+</style>
+
+<!-- ✅ Hero Section -->
+<section class="d-flex align-items-center justify-content-center text-center"
+         style="min-height: 90vh; background-image: url('/images/hero-bg.jpg'); background-size: cover; background-position: center; backdrop-filter: blur(3px);">
+    <div class="container">
+        <div data-aos="zoom-in">
+            <h1 class="fw-bold text-white mb-3" style="font-size: 2.2rem;">
+                All Your Club Data, One Smart Dashboard.
+            </h1>
+            <p class="text-light mb-4" style="font-size: 1.1rem;">
+                Manage teams, players, and coaches in one clean interface.
+            </p>
+            <a href="#clubCarousel" class="btn btn-light text-primary fw-bold px-4 py-2 rounded-pill shadow-sm" data-aos="fade-up">
+                Explore Now
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ✅ Carousel Section -->
+<section class="py-4" style="background: transparent;">
+    <div id="clubCarousel" class="carousel slide" data-bs-ride="carousel" data-aos="fade-up">
+        <div class="carousel-inner">
+            @foreach (var player in Model.Players)
+            {
+                <div class="carousel-item @(player == Model.Players.First() ? "active" : "")">
+                    <img src="@(!string.IsNullOrEmpty(player.ImagePath) ? player.ImagePath : "/images/default-player.jpg")"
+                         alt="@player.Name"
+                         class="d-block mx-auto"
+                         style="max-height: 300px; object-fit: contain;" />
+                    <div class="carousel-caption">
+                        <h5>@player.Name</h5>
+                        <p>Player - @player.Position</p>
+                    </div>
+                </div>
+            }
+
+            @foreach (var coach in Model.Coaches)
+            {
+                <div class="carousel-item">
+                    <img src="@(!string.IsNullOrEmpty(coach.ImagePath) ? coach.ImagePath : "/images/default-coach.jpg")"
+                         alt="@coach.Name"
+                         class="d-block mx-auto"
+                         style="max-height: 300px; object-fit: contain;" />
+                    <div class="carousel-caption">
+                        <h5>@coach.Name</h5>
+                        <p>Coach - @coach.Phone</p>
+                    </div>
+                </div>
+
+            }
+
+            @foreach (var team in Model.Teams)
+            {
+                <div class="carousel-item">
+                    <img src="@(!string.IsNullOrEmpty(team.ImagePath) ? team.ImagePath : "/images/default-team.jpg")"
+                         alt="@team.Name"
+                         class="d-block mx-auto"
+                         style="max-height: 300px; object-fit: contain;" />
+                    <div class="carousel-caption">
+                        <h5>@team.Name</h5>
+                        <p>Team - @team.City</p>
+                    </div>
+                </div>
+
+            }
+        </div>
+
+        <button class="carousel-control-prev" type="button" data-bs-target="#clubCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#clubCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        </button>
+    </div>
+</section>
+
+<!-- ✅ Statistics Section -->
+<section class="py-5" style="background: transparent;">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-3 text-center">
+                <div class="card p-4 shadow" style="border-radius: 20px;">
+                    <h2 class="text-primary fw-bold">@Model.TeamsCount</h2>
+                    <p class="text-muted">Teams</p>
+                </div>
+            </div>
+
+            <div class="col-md-3 text-center">
+                <div class="card p-4 shadow" style="border-radius: 20px;">
+                    <h2 class="text-primary fw-bold">@Model.PlayersCount</h2>
+                    <p class="text-muted">Players</p>
+                </div>
+            </div>
+
+            <div class="col-md-3 text-center">
+                <div class="card p-4 shadow" style="border-radius: 20px;">
+                    <h2 class="text-primary fw-bold">@Model.CoachesCount</h2>
+                    <p class="text-muted">Coaches</p>
+                </div>
+            </div>
+
+            <!-- ✅ Match count card -->
+            <div class="col-md-3 text-center">
+                <div class="card p-4 shadow" style="border-radius: 20px;">
+                    <h2 class="text-primary fw-bold">@Model.MatchCount</h2>
+                    <p class="text-muted">Matches</p>
+                </div>
+            </div>
+        </div>
+
+           
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ✅ AOS JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script>
+    AOS.init({
+        duration: 1000,
+        once: false
+    });
+</script>
+
