@@ -5,6 +5,11 @@
         <h2 class="text-center mb-4 fw-bold">Add New Player</h2>
         <form asp-action="Create" enctype="multipart/form-data">
             <div class="form-group mb-3">
+                <label class="form-label fw-semibold">ID</label>
+                <input class="form-control" value="(auto)" readonly />
+                <small class="text-muted">ID will be assigned after creation.</small>
+            </div>
+            <div class="form-group mb-3">
                 <label asp-for="Name" class="form-label fw-semibold">Name</label>
                 <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>

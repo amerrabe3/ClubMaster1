@@ -15,6 +15,9 @@
                         <h5 class="card-title mb-3 text-primary fw-bold">
                             <i class="bi bi-calendar-event me-2"></i>@match.MatchDateTime.ToString("dd MMM yyyy - hh:mm tt")
                         </h5>
+                        <div class="mb-2">
+                            <span class="badge bg-secondary">ID: @match.Id</span>
+                        </div>
                         <div class="d-flex justify-content-between align-items-center mb-2">
                             <div class="text-center">
                                 <img src="@match.TeamA?.ImagePath" alt="Team A Logo" class="img-thumbnail bg-white" style="width: 54px; height: 54px; object-fit: cover; border-radius: 50%; border: 2px solid #e3e3e3;" />

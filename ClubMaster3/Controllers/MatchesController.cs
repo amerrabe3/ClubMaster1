@@ -6,9 +6,12 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ClubMaster3.Data;
 using ClubMaster3.Models;
+using Microsoft.AspNetCore.Authorization;
+using System.Collections.Generic;
 
 namespace ClubMaster3.Controllers
 {
+    [AllowAnonymous]
     public class MatchesController : Controller
     {
         private readonly ClubMaster3Context _context;
