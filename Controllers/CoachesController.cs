@@ -8,9 +8,11 @@ using Microsoft.EntityFrameworkCore;
 using ClubMaster3.Data;
 using ClubMaster3.Models;
 using ClubMaster3.Migrations;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ClubMaster3.Controllers
 {
+    [AllowAnonymous]
     public class CoachesController : Controller
     {
         private readonly ClubMaster3Context _context;

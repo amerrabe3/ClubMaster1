@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ClubMaster3.Data;
 using ClubMaster3.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ClubMaster3.Controllers
 {
+    [AllowAnonymous]
     public class TeamsController : Controller
     {
         private readonly ClubMaster3Context _context;
@@ -50,8 +52,8 @@ namespace ClubMaster3.Controllers
         }
 
         // POST: Teams/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        
+       
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Team team, IFormFile ImageFile)
@@ -90,8 +92,7 @@ namespace ClubMaster3.Controllers
         }
 
         // POST: Teams/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+      
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Name,CoachId")] Team team)
@@ -152,19 +153,19 @@ namespace ClubMaster3.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            // تحقق إذا الفريق مرتبط بأي مباراة
             var hasMatches = _context.Matches.Any(m => m.TeamAId == id || m.TeamBId == id);
 
             if (hasMatches)
             {
+                var team = await _context.Team.FindAsync(id);
                 ModelState.AddModelError(string.Empty, "Cannot delete team. It is linked to existing matches.");
-                return View(); // أو RedirectToAction("Index") إذا ما بدك تظهر صفحة الحذف مرة ثانية
+                return View("Delete", team); 
             }
 
-            var team = await _context.Team.FindAsync(id);
-            if (team != null)
+            var teamToDelete = await _context.Team.FindAsync(id);
+            if (teamToDelete != null)
             {
-                _context.Team.Remove(team);
+                _context.Team.Remove(teamToDelete);
                 await _context.SaveChangesAsync();
             }
             return RedirectToAction(nameof(Index));

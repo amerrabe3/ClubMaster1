@@ -1,26 +1,28 @@
 ﻿@model ClubMaster3.Models.Player
 
-<h2 class="mb-4">Player Details</h2>
+@{
+    ViewData["Title"] = "Player Details";
+}
 
-<div class="card p-4 shadow-sm">
-    <dl class="row">
-        <dt class="col-sm-3">Name</dt>
-        <dd class="col-sm-9">@Model.Name</dd>
-
-        <dt class="col-sm-3">Position</dt>
-        <dd class="col-sm-9">@Model.Position</dd>
-
-        <dt class="col-sm-3">Shirt Number</dt>
-        <dd class="col-sm-9">@Model.ShirtNum</dd>
-
-        <dt class="col-sm-3">Age</dt>
-        <dd class="col-sm-9">@Model.Age</dd>
-
-        <dt class="col-sm-3">Team ID</dt>
-        <dd class="col-sm-9">@Model.TeamId</dd>
-    </dl>
+<div class="container d-flex align-items-center justify-content-center min-vh-100">
+    <div class="card shadow-lg p-4 rounded-4" style="max-width: 500px; width: 100%; background: rgba(255,255,255,0.97);">
+        <h2 class="text-center mb-4 fw-bold">Player Details</h2>
+        <dl class="row mb-4">
+            <dt class="col-sm-4">Name</dt>
+            <dd class="col-sm-8">@Model.Name</dd>
+            <dt class="col-sm-4">Position</dt>
+            <dd class="col-sm-8">@Model.Position</dd>
+            <dt class="col-sm-4">Shirt Number</dt>
+            <dd class="col-sm-8">@Model.ShirtNum</dd>
+            <dt class="col-sm-4">Age</dt>
+            <dd class="col-sm-8">@Model.Age</dd>
+            <dt class="col-sm-4">Team ID</dt>
+            <dd class="col-sm-8">@Model.TeamId</dd>
+        </dl>
+        <div class="d-flex justify-content-between">
+            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning fw-bold">Edit</a>
+            <a asp-action="Index" class="btn btn-secondary fw-bold">Back to List</a>
+        </div>
+    </div>
 </div>
-
-<a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning mt-3">Edit</a>
-<a asp-action="Index" class="btn btn-secondary mt-3">Back to List</a>
 

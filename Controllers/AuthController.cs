@@ -96,11 +96,11 @@ namespace ClubMaster3.Controllers
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
 
-            // Optionally log the user in after registration
-            HttpContext.Session.SetString("Username", user.Username);
-            HttpContext.Session.SetString("Role", user.Role);
-
-            return RedirectToAction("Index", "Home");
+            TempData["RegisterSuccess"] = "Successfully registered! Please log in.";
+            
+            
+            
+            return RedirectToAction("Login");
         }
 
         [HttpPost]

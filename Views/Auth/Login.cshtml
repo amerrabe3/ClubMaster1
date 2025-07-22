@@ -6,6 +6,12 @@
 <div class="container d-flex align-items-center justify-content-center min-vh-100">
     <div class="card shadow-lg p-4 rounded-4" style="max-width: 400px; width: 100%; background: rgba(255,255,255,0.95);">
         <h2 class="text-center mb-4 fw-bold">Login</h2>
+        @if (TempData["RegisterSuccess"] != null)
+        {
+            <div class="alert alert-success text-center fw-bold mb-3">
+                @TempData["RegisterSuccess"]
+            </div>
+        }
         @if (ViewBag.Error != null)
         {
             <div class="alert alert-danger">@ViewBag.Error</div>
