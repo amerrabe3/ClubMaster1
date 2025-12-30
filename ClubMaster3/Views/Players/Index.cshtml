@@ -11,6 +11,7 @@
             <table class="table table-bordered table-hover text-center align-middle">
                 <thead class="table-primary">
                     <tr>
+                        <th>ID</th>
                         <th>Name</th>
                         <th>Position</th>
                         <th>Shirt Number</th>
@@ -23,6 +24,7 @@
                     @foreach (var player in Model)
                     {
                         <tr>
+                            <td>@player.Id</td>
                             <td>@player.Name</td>
                             <td>@player.Position</td>
                             <td>@player.ShirtNum</td>

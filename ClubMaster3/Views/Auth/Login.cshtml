@@ -1,0 +1,46 @@
+@model ClubMaster3.Models.LoginViewModel
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="container d-flex align-items-center justify-content-center min-vh-100">
+    <div class="card shadow-lg p-4 rounded-4" style="max-width: 400px; width: 100%; background: rgba(255,255,255,0.95);">
+        <h2 class="text-center mb-4 fw-bold">Login</h2>
+        @if (TempData["RegisterSuccess"] != null)
+        {
+            <div class="alert alert-success text-center fw-bold mb-3">
+                @TempData["RegisterSuccess"]
+            </div>
+        }
+        @if (ViewBag.Error != null)
+        {
+            <div class="alert alert-danger">@ViewBag.Error</div>
+        }
+        <form asp-action="Login" method="post">
+            <div class="form-group mb-3">
+                <label asp-for="Username" class="fw-semibold"></label>
+                <div class="input-group">
+                    <span class="input-group-text bg-light"><i class="bi bi-person"></i></span>
+                    <input asp-for="Username" class="form-control" placeholder="Enter your username" />
+                </div>
+                <span asp-validation-for="Username" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-4">
+                <label asp-for="Password" class="fw-semibold"></label>
+                <div class="input-group">
+                    <span class="input-group-text bg-light"><i class="bi bi-lock"></i></span>
+                    <input asp-for="Password" type="password" class="form-control" placeholder="Enter your password" />
+                </div>
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-primary w-100 mb-2 fw-bold">Login</button>
+        </form>
+        <div class="text-center my-2 text-muted">or</div>
+        <a href="/Auth/Register" class="btn w-100 fw-bold" style="background-color: #89CFF0; border-color: #89CFF0; color: #fff;">Register</a>
+    </div>
+</div>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
+} 

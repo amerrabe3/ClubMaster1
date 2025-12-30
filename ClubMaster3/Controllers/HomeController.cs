@@ -82,9 +82,11 @@ namespace ClubMaster3.Controllers
                 TeamsCount = _context.Team.Count(),
                 PlayersCount = _context.Player.Count(),
                 CoachesCount = _context.Coach.Count(),
+                MatchCount = _context.Matches.Count(),
                 Players = players,
                 Coaches = coaches,
                 Teams = teams
+           
             };
 
             return View(viewModel);
